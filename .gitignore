@@ -20,7 +20,7 @@ db-config.json
 
 # Dependency directory
 node_modules
-
+yarn.lock
 # Debug log from npm
 npm-debug.log
 

@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "nodejs-test",
+            "group": "test",
+            "database": "main_database",
+            "username": "postgres",
+            "password": "postgres"
+        }
+    ]
+}

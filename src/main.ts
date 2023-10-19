@@ -2,7 +2,7 @@ import * as Hapi from '@hapi/hapi';
 import * as Nes from '@hapi/nes';
 import * as Inert from '@hapi/inert';
 import * as Vision from '@hapi/vision';
-import * as Pino from 'hapi-pino';
+// import * as Pino from 'hapi-pino';
 import * as Basic from '@hapi/basic';
 import * as HapiBearer from 'hapi-auth-bearer-token';
 import * as HapiPulse from 'hapi-pulse';
@@ -10,7 +10,7 @@ import * as HapiSwagger from 'hapi-swagger';
 import Qs from 'qs';
 import routes from './server/routes/index';
 import { tokenValidate, } from './server/utils/auth';
-import { config, pinoConfig, } from './server/config';
+import { config, /* pinoConfig,*/ } from './server/config';
 import { handleValidationError, responseHandler, } from './server/utils';
 import { Database, } from './server/database/Database';
 import { AuthStrategy, AuthToken, } from './server/enums';
@@ -64,10 +64,10 @@ export async function init(): Promise<Hapi.Server> {
 	server.app.db = await Database.instance();
 
 	if (!config.test) {
-		await server.register({
-			plugin: Pino,
-			options: pinoConfig,
-		});
+		// await server.register({
+		// 	plugin: Pino,
+		// 	options: pinoConfig,
+		// });
 	}
 
 	server.auth.strategy(AuthStrategy.JwtAccess, 'bearer-access-token', {

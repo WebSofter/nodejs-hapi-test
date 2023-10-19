@@ -7,6 +7,7 @@ import { SessionStatus, UserStatus, } from '../enums';
 import { JwtTokenHelper, } from '../helpers/JwtTokenHelper';
 import { UserRepository, } from '../repositories/UserRepository';
 import { SessionRepository, } from '../repositories/SessionRepository';
+import { WalletRepository, } from '../repositories/WalletRepository';
 
 export async function signup(
 	r: Hapi.Request
@@ -20,6 +21,9 @@ export async function signup(
 			});
 
 		user = await UserRepository.create({ email: cred.email, password: cred.password, });
+		if(user)
+			await WalletRepository.createUserWallet(user.id);
+
 		return outputEmpty();
 	} catch (err) {
 		return handlerError('Failed to sign-up', err as Error);

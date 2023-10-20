@@ -13,14 +13,14 @@ export async function signup(
 	r: Hapi.Request
 ): Promise<IOutputEmpty | IOutputOk<{ token?: string }> | Boom> {
 	try {
-		const cred = r.payload as ISignUpCredentials;
-		let user = await UserRepository.findByEmail(cred.email);
+		const { email, password, } = r.payload as ISignUpCredentials;
+		let user = await UserRepository.findByEmail(email);
 		if (user)
 			throw new Exception(Errors.UserAlreadyExist, ErrorsMessages[Errors.UserAlreadyExist], {
-				email: cred.email,
+				email: email,
 			});
 
-		user = await UserRepository.create({ email: cred.email, password: cred.password, });
+		user = await UserRepository.create({ email, password, });
 		if(user)
 			await WalletRepository.createUserWallet(user.id);
 

@@ -9,3 +9,6 @@ export interface IUserListCredentials {
 	page?: number;
 	size?: number;
 }
+export interface IUserCredentials {
+	id: string;
+}

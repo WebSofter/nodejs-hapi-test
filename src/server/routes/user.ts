@@ -20,5 +20,19 @@ export default <ServerRoute[]>[
 				schema: outputOkSchema(user.listSchema),
 			},
 		},
+	},
+	{
+		method: 'GET',
+		path: '/user/{id}',
+		handler: api.get,
+		options: {
+			auth: false,
+			id: 'user.get',
+			description: 'User getting',
+			tags: ['api', 'user'],
+			response: {
+				schema: outputOkSchema(user.userSchema),
+			},
+		},
 	}
 ];

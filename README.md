@@ -14,6 +14,12 @@ $ pnpm install
 $ npm start
 ```
 
+### Deploy Postgres in Docker
+
+```
+docker compose up -d
+```
+
 ### REST DOCUMENTATION
 
 All documentation is available via:

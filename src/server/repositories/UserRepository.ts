@@ -1,6 +1,8 @@
 import { Op, Transaction, } from 'sequelize';
 import { User, } from '../database/models';
 import { UserStatus, } from '../enums';
+import { USER_LIST_LIMIT, } from '../constants';
+import { pagination, } from '../utils/content';
 
 interface IFindByEmailOptions {
 	transaction?: Transaction;
@@ -16,6 +18,15 @@ interface ICreateOptions {
 }
 
 export class UserRepository {
+	static async getList(email: string | undefined, page = 1, size: number = USER_LIST_LIMIT, options: IFindByEmailOptions = {}): Promise<User[] | null> {
+		const { transaction, } = options;
+		const condition = email ? { email: { [Op.like]: `%${email}%`, }, } : {};
+		return User.findAll({
+			where: condition,
+			...pagination(page, size),
+			transaction,
+		});
+	}
 	static async findByEmail(email: string, options: IFindByEmailOptions = {}): Promise<User | null> {
 		const { transaction, } = options;
 

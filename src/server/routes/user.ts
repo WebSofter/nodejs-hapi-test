@@ -40,15 +40,29 @@ export default <ServerRoute[]>[
 		path: '/user/{id}',
 		handler: api.update,
 		options: {
-			auth: false,
+			//auth: true,
 			id: 'user.update',
 			description: 'Update user',
 			tags: ['api', 'user'],
 			validate: {
-				// payload: user.updateUserSchema,
+				payload: user.updateUserSchema,
 			},
 			response: {
 				schema: outputEmptySchema(),
+			},
+		},
+	},
+	{
+		method: 'GET',
+		path: '/user/statistic',
+		handler: api.getStatistic,
+		options: {
+			auth: false,
+			id: 'user.getStatistic',
+			description: 'User statistic',
+			tags: ['api', 'user'],
+			response: {
+				schema: outputOkSchema(user.userSchema),
 			},
 		},
 	}

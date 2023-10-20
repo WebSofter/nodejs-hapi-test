@@ -1,4 +1,4 @@
-import { Op, Transaction, } from 'sequelize';
+import { Op, Sequelize, Transaction, } from 'sequelize';
 import { User, } from '../database/models';
 import { UserStatus, } from '../enums';
 import { USER_LIST_LIMIT, } from '../constants';
@@ -16,7 +16,9 @@ interface IFindByLoginOptions {
 	transaction?: Transaction;
 	scope?: string;
 }
-
+interface IFindByCreatedAtOptions {
+	transaction?: Transaction;
+}
 interface ICreateOptions {
 	transaction?: Transaction;
 }
@@ -37,6 +39,18 @@ export class UserRepository {
 	static async getUser(id: string, options: IFindByIdOptions = {}): Promise<User | null> {
 		const { transaction, } = options;
 		return User.findByPk(id, { transaction, });
+	}
+	static async getStatistic(days = 30, options: IFindByCreatedAtOptions = {}): Promise<{ rows: User[]; count: number; } | null> {
+		const { transaction, } = options;
+		const condition = {
+			createdAt: {
+				[Op.gte]: Sequelize.literal(`current_date - interval '${days} day'`),
+			},
+		}
+		return User.findAndCountAll({
+			where: condition,
+			transaction,
+		})
 	}
 	static async update(
 		id: string,

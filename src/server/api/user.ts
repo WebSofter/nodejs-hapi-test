@@ -10,7 +10,7 @@ export async function list(r: Hapi.Request): Promise<IOutputEmpty | IOutputOk<IU
 		const users = await UserRepository.getList(email, page, size);
 		return outputOk(users);
 	} catch (err) {
-		return handlerError('Failed to login', err);
+		return handlerError('Failed user list getting', err);
 	}
 }
 
@@ -20,10 +20,13 @@ export async function get(r: Hapi.Request): Promise<IOutputEmpty | IOutputOk<IUs
 		const user = await UserRepository.getUser(id);
 		return outputOk(user);
 	} catch (err) {
-		return handlerError('Failed to login', err);
+		return handlerError('Failed user getting', err);
 	}
 }
-
+export async function getStatistic(): Promise<IOutputEmpty | IOutputOk<IUser> | Boom> {
+	const statistic = await UserRepository.getStatistic();
+	return outputOk(statistic);
+}
 export async function update(r: Hapi.Request): Promise< IOutputEmpty | Boom> {
 	try {
 		const { id, } = r.params as IUserCredentials;

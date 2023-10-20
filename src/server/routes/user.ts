@@ -1,7 +1,7 @@
 import { ServerRoute, } from '@hapi/hapi';
 import * as api from '../api/user';
 import * as user from '../schemas/user';
-import { outputOkSchema, } from '../schemas/common';
+import { outputEmptySchema, outputOkSchema, } from '../schemas/common';
 
 export default <ServerRoute[]>[
 	{
@@ -32,6 +32,23 @@ export default <ServerRoute[]>[
 			tags: ['api', 'user'],
 			response: {
 				schema: outputOkSchema(user.userSchema),
+			},
+		},
+	},
+	{
+		method: 'PATCH',
+		path: '/user/{id}',
+		handler: api.update,
+		options: {
+			auth: false,
+			id: 'user.update',
+			description: 'Update user',
+			tags: ['api', 'user'],
+			validate: {
+				// payload: user.updateUserSchema,
+			},
+			response: {
+				schema: outputEmptySchema(),
 			},
 		},
 	}

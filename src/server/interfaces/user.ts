@@ -12,3 +12,7 @@ export interface IUserListCredentials {
 export interface IUserCredentials {
 	id: string;
 }
+export interface IUpdateCredentials {
+	firstName: string;
+	lastName: string;
+}

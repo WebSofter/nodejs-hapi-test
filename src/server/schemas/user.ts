@@ -20,3 +20,8 @@ export const userSchema = Joi.object({
 	updatedAt: stringSchema,
 	deletedAt: stringSchema,
 })
+
+export const updateUserSchema = Joi.object({
+	firstName: stringSchema,
+	lastName: stringSchema,
+})

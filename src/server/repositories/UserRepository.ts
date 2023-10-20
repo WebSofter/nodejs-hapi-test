@@ -21,6 +21,9 @@ interface ICreateOptions {
 	transaction?: Transaction;
 }
 
+interface IUpdateOptions {
+	transaction?: Transaction;
+}
 export class UserRepository {
 	static async getList(email: string | undefined, page = 1, size: number = USER_LIST_LIMIT, options: IFindByEmailOptions = {}): Promise<User[] | null> {
 		const { transaction, } = options;
@@ -35,7 +38,20 @@ export class UserRepository {
 		const { transaction, } = options;
 		return User.findByPk(id, { transaction, });
 	}
-	
+	static async update(
+		id: string,
+		values: Partial<User>,
+		options: IUpdateOptions = {}
+	): Promise<[number, User[]]> {
+		const { transaction, } = options;
+
+		return User.update({ ...values, }, {
+			where: {
+			   id,
+			},
+			transaction,
+		});
+	}
 	static async findByEmail(email: string, options: IFindByEmailOptions = {}): Promise<User | null> {
 		const { transaction, } = options;
 

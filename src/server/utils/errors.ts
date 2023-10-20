@@ -45,6 +45,10 @@ export enum Errors {
 	// 22x Check
 
 	UserNotActive = 403220,
+    
+	//24x Update
+
+	UserNotUpdated = 403240
 }
 
 export const ErrorsMessages = {
@@ -67,4 +71,5 @@ export const ErrorsMessages = {
 	[Errors.UserAlreadyExist]: 'Errors.User.AlreadyExist',
 	[Errors.UserNotActive]: 'Errors.User.NotActive',
 	[Errors.UserNotFound]: 'Errors.User.NotFound',
+	[Errors.UserNotUpdated]: 'Errors.User.NotUpdated',
 };

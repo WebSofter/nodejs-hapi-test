@@ -139,6 +139,7 @@ export class UserRepository {
 			transaction,
 		});
 	}
+
 	static async getFriends(id: string, page = 1, size: number = USER_LIST_LIMIT, options: IFindByEmailOptions = {}): Promise<Friendship[] | null> {
 		const { transaction, } = options;
 		return Friendship.findAll({
@@ -148,5 +149,15 @@ export class UserRepository {
 			...pagination(page, size),
 			transaction,
 		});
+	}
+
+	static async getFriendsStat(id: string, options: IFindByEmailOptions = {}): Promise<number | null> {
+		const { transaction, } = options;
+		return Friendship.count({
+			where: {
+				requesterId: id,
+			},
+			transaction,
+		})
 	}
 }

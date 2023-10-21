@@ -51,6 +51,16 @@ export async function getFriends(r: Hapi.Request): Promise<IOutputEmpty | IOutpu
 	}
 }
 
+export async function getFriendsStat(r: Hapi.Request): Promise<IOutputEmpty | IOutputOk<number> | Boom> {
+	try {
+		const { id, } = r.params as IUserCredentials;
+		const friends = await UserRepository.getFriendsStat(id);
+		return outputOk(friends);
+	} catch (err) {
+		return handlerError('Failed friends statistic getting', err);
+	}
+}
+
 export async function addFriend(r: Hapi.Request): Promise<IOutputOk<Friendship> | Boom> {
 	try {
 		const { id : requesterId, } = r.auth.credentials.user as IUser

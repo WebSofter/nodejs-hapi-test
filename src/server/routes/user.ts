@@ -76,7 +76,21 @@ export default <ServerRoute[]>[
 			description: 'User friends getting',
 			tags: ['api', 'user'],
 			response: {
-				schema: outputOkSchema(user.userFriendSchema),
+				schema: outputOkSchema(user.userFriendListSchema),
+			},
+		},
+	},
+	{
+		method: 'GET',
+		path: '/user/{id}/friend/stat',
+		handler: api.getFriendsStat,
+		options: {
+			auth: false,
+			id: 'user.friend.stat',
+			description: 'User friends statistic',
+			tags: ['api', 'user'],
+			response: {
+				schema: outputOkSchema(user.userFriendStatSchema),
 			},
 		},
 	},

@@ -31,3 +31,13 @@ export const userUpdateSchema = Joi.object({
 export const userFriendSchema = Joi.object({
 	id: stringSchema,
 })
+export const userFriendListSchema = Joi.object({
+	id: idSchema,
+	receiverId: stringSchema,
+	requesterId: stringSchema,
+	createdAt: stringSchema,
+	updatedAt: stringSchema,
+})
+export const userFriendStatSchema = Joi.object({
+	count: Joi.number().integer(),
+})

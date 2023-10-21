@@ -7,6 +7,8 @@ services:
       POSTGRES_USER: "${DATABASE_USER}"
       POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
     volumes:
-      - ./docker:/docker-entrypoint-initdb.d
+      - node-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+volumes:
+  node-data:

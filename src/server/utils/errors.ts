@@ -48,7 +48,29 @@ export enum Errors {
     
 	//24x Update
 
-	UserNotUpdated = 403240
+	UserNotUpdated = 403240,
+
+	// --- 3xx Post
+
+	// 30x Find
+
+	PostNotFound = 404300,
+
+	// 31x Create
+
+	PostNotCreated = 403310,
+
+	// 32x Check
+
+	PostNotActive = 403320,
+	
+	//34x Update
+
+	PostNotUpdated = 403340,
+
+	//35x Update
+
+	PostNotDeleted = 403540
 }
 
 export const ErrorsMessages = {
@@ -72,4 +94,9 @@ export const ErrorsMessages = {
 	[Errors.UserNotActive]: 'Errors.User.NotActive',
 	[Errors.UserNotFound]: 'Errors.User.NotFound',
 	[Errors.UserNotUpdated]: 'Errors.User.NotUpdated',
+	[Errors.PostNotCreated]: 'Errors.Post.AlreadyExist',
+	[Errors.PostNotActive]: 'Errors.Post.NotActive',
+	[Errors.PostNotFound]: 'Errors.Post.NotFound',
+	[Errors.PostNotUpdated]: 'Errors.Post.NotUpdated',
+	[Errors.PostNotDeleted]: 'Errors.Post.NotDeleted',
 };

@@ -6,7 +6,7 @@ export class WalletRepository {
 		return Wallet.create(
 			{
 				userId,
-				balance: balance,
+				balance,
 			},
 			{
 				transaction,

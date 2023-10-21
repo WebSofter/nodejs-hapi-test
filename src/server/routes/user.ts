@@ -31,7 +31,7 @@ export default <ServerRoute[]>[
 			description: 'User getting',
 			tags: ['api', 'user'],
 			response: {
-				schema: outputOkSchema(user.userSchema),
+				schema: outputOkSchema(user.userSingleSchema),
 			},
 		},
 	},
@@ -45,7 +45,7 @@ export default <ServerRoute[]>[
 			description: 'Update user',
 			tags: ['api', 'user'],
 			validate: {
-				payload: user.updateUserSchema,
+				payload: user.userUpdateSchema,
 			},
 			response: {
 				schema: outputEmptySchema(),
@@ -62,7 +62,7 @@ export default <ServerRoute[]>[
 			description: 'User statistic',
 			tags: ['api', 'user'],
 			response: {
-				schema: outputOkSchema(user.userSchema),
+				schema: outputOkSchema(user.userSingleSchema),
 			},
 		},
 	},

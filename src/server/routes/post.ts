@@ -31,7 +31,7 @@ export default <ServerRoute[]>[
 			description: 'Post getting',
 			tags: ['api', 'post'],
 			response: {
-				schema: outputOkSchema(post.postSchema),
+				schema: outputOkSchema(post.postSingleSchema),
 			},
 		},
 	},
@@ -44,7 +44,7 @@ export default <ServerRoute[]>[
 			description: 'Update post',
 			tags: ['api', 'post'],
 			validate: {
-				payload: post.updatePostSchema,
+				payload: post.postQueryUpdateSchema,
 			},
 			response: {
 				schema: outputEmptySchema(),
@@ -60,7 +60,7 @@ export default <ServerRoute[]>[
 			description: 'Create post',
 			tags: ['api', 'post'],
 			validate: {
-				payload: post.createPostSchema,
+				payload: post.postQueryCreateSchema,
 			},
 			response: {
 				schema: outputEmptySchema(),

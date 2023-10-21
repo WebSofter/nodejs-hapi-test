@@ -9,7 +9,7 @@ export const userListQuerySchema = Joi.object({
 	size: Joi.number().max(USER_LIST_LIMIT).example(10).label('Limit size on page'),
 }).label('Search users');
 
-export const userSchema = Joi.object({
+export const userSingleSchema = Joi.object({
 	id: idSchema.label('User id'),
 	email: emailSchema,
 	phone: stringSchema,
@@ -21,9 +21,9 @@ export const userSchema = Joi.object({
 	deletedAt: stringSchema,
 })
 
-export const userListSchema = userSchema
+export const userListSchema = userSingleSchema
 
-export const updateUserSchema = Joi.object({
+export const userUpdateSchema = Joi.object({
 	firstName: stringSchema,
 	lastName: stringSchema,
 })

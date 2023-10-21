@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { stringSchema, idSchema, emailSchema, } from './common';
 import { POST_LIST_LIMIT, } from '../constants';
-import { userSchema, } from './user';
+import { userSingleSchema, } from './user';
 
 
 export const postSearchSchema = Joi.object({
@@ -10,7 +10,7 @@ export const postSearchSchema = Joi.object({
 	size: Joi.number().max(POST_LIST_LIMIT).example(10).label('Limit size on page'),
 }).label('Search posts');
 
-export const postSchema = Joi.object({
+export const postSingleSchema = Joi.object({
 	id: idSchema.label('Post id'),
 	email: emailSchema,
 	phone: stringSchema,
@@ -23,16 +23,13 @@ export const postSchema = Joi.object({
 })
 
 
-export const postListSchema = postSchema.keys({
-	user: userSchema,
+export const postListSchema = postSingleSchema.keys({
+	user: userSingleSchema,
 });
 
-export const updatePostSchema = Joi.object({
+export const postQueryUpdateSchema = Joi.object({
 	title: stringSchema,
 	content: stringSchema,
 })
 
-export const createPostSchema = Joi.object({
-	title: stringSchema,
-	content: stringSchema,
-})
+export const postQueryCreateSchema = postQueryUpdateSchema

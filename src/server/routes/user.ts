@@ -65,5 +65,51 @@ export default <ServerRoute[]>[
 				schema: outputOkSchema(user.userSchema),
 			},
 		},
+	},
+	{
+		method: 'GET',
+		path: '/user/{id}/friends',
+		handler: api.getFriends,
+		options: {
+			auth: false,
+			id: 'user.friend.list',
+			description: 'User friends getting',
+			tags: ['api', 'user'],
+			response: {
+				schema: outputOkSchema(user.userSchema),
+			},
+		},
+	},
+	{
+		method: 'POST',
+		path: '/user/friend',
+		handler: api.addFriend,
+		options: {
+			id: 'user.friend.add',
+			description: 'User friend adding',
+			tags: ['api', 'user'],
+			validate: {
+				payload: user.palUserSchema,
+			},
+			response: {
+				schema: outputOkSchema(user.userSchema),
+			},
+		},
+	},
+	{
+		method: 'DELETE',
+		path: '/user/friend',
+		handler: api.deleteFriend,
+		options: {
+			id: 'user.friend.delete',
+			description: 'User friend deleting',
+			tags: ['api', 'user'],
+			validate: {
+				payload: user.palUserSchema,
+			},
+			response: {
+				schema: outputOkSchema(user.userSchema),
+			},
+		},
 	}
 ];

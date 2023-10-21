@@ -1,23 +1,28 @@
-import { Column, DataType, ForeignKey, Model, Table, } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table, } from 'sequelize-typescript';
 import { User, } from './User';
 
 
 @Table({
-	paranoid: true,
+	paranoid: false,
+	indexes:[
+		{ fields: [ 'receiverId', 'requesterId' ], unique: true, }
+	],
 })
 export class Friendship extends Model {
 	@ForeignKey(() => User)
 	@Column({
-		type: DataType.UUID,
-		allowNull: true,
+		type: DataType.CHAR,
+		allowNull: false,
 	})
 		receiverId!: string;
 	
 	@ForeignKey(() => User)
 	@Column({
-		type: DataType.UUID,
-		allowNull: true,
+		type: DataType.CHAR,
+		allowNull: false,
 	})
 		requesterId!: string;
 
+	@BelongsTo(() => User)
+		user!: User;
 }

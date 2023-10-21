@@ -1,5 +1,5 @@
 import { Op, Sequelize, Transaction, } from 'sequelize';
-import { User, } from '../database/models';
+import { Friendship, User, } from '../database/models';
 import { UserStatus, } from '../enums';
 import { USER_LIST_LIMIT, } from '../constants';
 import { pagination, } from '../utils/content';
@@ -108,6 +108,45 @@ export class UserRepository {
 			...values,
 			status: UserStatus.Active,
 		}, {
+			transaction,
+		});
+	}
+
+	static async addFriend(
+		requesterId: string, 
+		receiverId: string,
+		options: ICreateOptions = {}
+	): Promise<Friendship> {
+		const { transaction, } = options;
+		return Friendship.create({
+			requesterId,
+			receiverId,
+		}, {
+			transaction,
+		});
+	}
+
+	static async deleteFriend(
+		requesterId: string, 
+		receiverId: string, 
+		options: IFindByIdOptions = {}): Promise<number | null> {
+		const { transaction, } = options;
+		return Friendship.destroy({
+			where: {
+				requesterId,
+				receiverId,
+			},
+			transaction,
+		});
+	}
+	static async getFriends(id: string, page = 1, size: number = USER_LIST_LIMIT, options: IFindByEmailOptions = {}): Promise<Friendship[] | null> {
+		const { transaction, } = options;
+		return Friendship.findAll({
+			where: {
+				requesterId: id,
+			},
+			include: { model: User, },
+			...pagination(page, size),
 			transaction,
 		});
 	}

@@ -25,3 +25,7 @@ export const updateUserSchema = Joi.object({
 	firstName: stringSchema,
 	lastName: stringSchema,
 })
+
+export const palUserSchema = Joi.object({
+	id: stringSchema,
+})

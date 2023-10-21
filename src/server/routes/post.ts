@@ -14,10 +14,10 @@ export default <ServerRoute[]>[
 			description: 'Post list',
 			tags: ['api', 'post'],
 			validate: {
-				query: post.listSchema,
+				query: post.postSearchSchema,
 			},
 			response: {
-				schema: outputOkSchema(post.listSchema),
+				schema: outputOkSchema(post.postListSchema),
 			},
 		},
 	},

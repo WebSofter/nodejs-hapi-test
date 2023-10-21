@@ -145,7 +145,6 @@ export class UserRepository {
 			where: {
 				requesterId: id,
 			},
-			include: { model: User, },
 			...pagination(page, size),
 			transaction,
 		});

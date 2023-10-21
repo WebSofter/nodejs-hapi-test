@@ -14,10 +14,10 @@ export default <ServerRoute[]>[
 			description: 'User list',
 			tags: ['api', 'user'],
 			validate: {
-				query: user.listSchema,
+				query: user.userListQuerySchema,
 			},
 			response: {
-				schema: outputOkSchema(user.listSchema),
+				schema: outputOkSchema(user.userListSchema),
 			},
 		},
 	},
@@ -76,7 +76,7 @@ export default <ServerRoute[]>[
 			description: 'User friends getting',
 			tags: ['api', 'user'],
 			response: {
-				schema: outputOkSchema(user.userSchema),
+				schema: outputOkSchema(user.userFriendSchema),
 			},
 		},
 	},
@@ -89,10 +89,10 @@ export default <ServerRoute[]>[
 			description: 'User friend adding',
 			tags: ['api', 'user'],
 			validate: {
-				payload: user.palUserSchema,
+				payload: user.userFriendSchema,
 			},
 			response: {
-				schema: outputOkSchema(user.userSchema),
+				schema: outputEmptySchema(),
 			},
 		},
 	},
@@ -105,10 +105,10 @@ export default <ServerRoute[]>[
 			description: 'User friend deleting',
 			tags: ['api', 'user'],
 			validate: {
-				payload: user.palUserSchema,
+				payload: user.userFriendSchema,
 			},
 			response: {
-				schema: outputOkSchema(user.userSchema),
+				schema: outputEmptySchema(),
 			},
 		},
 	}

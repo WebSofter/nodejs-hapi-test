@@ -41,7 +41,7 @@ export async function update(r: Hapi.Request): Promise< IOutputEmpty | Boom> {
 	}
 }
 
-export async function getFriends(r: Hapi.Request): Promise<IOutputEmpty | IOutputOk<IUser[]> | Boom> {
+export async function getFriends(r: Hapi.Request): Promise<IOutputEmpty | IOutputOk<Friendship[]> | Boom> {
 	try {
 		const { id, } = r.params as IUserCredentials;
 		const friends = await UserRepository.getFriends(id);

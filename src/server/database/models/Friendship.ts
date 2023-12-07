@@ -11,14 +11,14 @@ import { User, } from './User';
 export class Friendship extends Model {
 	@ForeignKey(() => User)
 	@Column({
-		type: DataType.CHAR,
+		type: DataType.UUID,
 		allowNull: false,
 	})
 		receiverId!: string;
 	
 	@ForeignKey(() => User)
 	@Column({
-		type: DataType.CHAR,
+		type: DataType.UUID,
 		allowNull: false,
 	})
 		requesterId!: string;
